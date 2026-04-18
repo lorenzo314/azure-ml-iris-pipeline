@@ -32,4 +32,3 @@ def test_config_deployment_section():
     assert "deployment" in cfg
     assert "instance_type" in cfg["deployment"]
     assert "deployment_name" in cfg["deployment"]
-
