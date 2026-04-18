@@ -1,0 +1,23 @@
+azure_ml:
+  # Azure ML environment (name:version)
+  environment_name: mlflow-env
+  environment_version: "7"
+
+  # Compute cluster
+  compute_name: cpu-cluster
+  compute_size: Standard_DS2_v2
+  compute_min_instances: 0
+  compute_max_instances: 2
+
+  # Experiment
+  experiment_name: iris-rf-pipeline
+
+model:
+  # Update model_version each time you register a new version
+  name: iris-rf-model
+  version: "44"
+
+deployment:
+  instance_type: Standard_F2s_v2
+  instance_count: 1
+  deployment_name: blue

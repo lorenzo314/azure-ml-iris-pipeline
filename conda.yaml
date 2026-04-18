@@ -1,0 +1,16 @@
+name: mlflow-env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - setuptools>=68.0.0,<70.0.0
+  - pip:
+      - pip>=23.0
+      - wheel
+      - mlflow==2.9.2
+      - mlflow-skinny==2.9.2
+      - azureml-mlflow
+      - azure-ai-ml
+      - scikit-learn
+

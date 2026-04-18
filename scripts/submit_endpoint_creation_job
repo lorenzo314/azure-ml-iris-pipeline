@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Submits the endpoint creation job by calling deploy.py.
+# Model name and version are read from configs/config.yaml via deploy.py.
+# Requires SUBSCRIPTION_ID, RESOURCE_GROUP, WORKSPACE_NAME in your environment.
+
+set -euo pipefail
+
+# Load .env from repo root if variables are not already in the environment
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ENV_FILE="$SCRIPT_DIR/../.env"
+if [ -f "$ENV_FILE" ]; then
+  set -a && source "$ENV_FILE" && set +a
+fi
+
+: "${SUBSCRIPTION_ID:?Need to set SUBSCRIPTION_ID in .env}"
+: "${RESOURCE_GROUP:?Need to set RESOURCE_GROUP in .env}"
+: "${WORKSPACE_NAME:?Need to set WORKSPACE_NAME in .env}"
+
+# Change to repo root so relative paths resolve correctly
+cd "$SCRIPT_DIR/.."
+
+# Model name and version are read from configs/config.yaml inside deploy.py
+python deploy/deploy.py \
+  --subscription_id "$SUBSCRIPTION_ID" \
+  --resource_group "$RESOURCE_GROUP" \
+  --workspace_name "$WORKSPACE_NAME"

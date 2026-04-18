@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Verifies role assignments for the compute cluster's managed identity.
+# Requires SUBSCRIPTION_ID, RESOURCE_GROUP, WORKSPACE_NAME, VERIFY_ASSIGNEE_ID
+# to be set in your environment (source .env first).
+
+set -euo pipefail
+
+# Load .env from repo root if variables are not already in the environment
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ENV_FILE="$SCRIPT_DIR/../.env"
+if [ -f "$ENV_FILE" ]; then
+  set -a && source "$ENV_FILE" && set +a
+fi
+
+: "${SUBSCRIPTION_ID:?Need to set SUBSCRIPTION_ID in .env}"
+: "${RESOURCE_GROUP:?Need to set RESOURCE_GROUP in .env}"
+: "${WORKSPACE_NAME:?Need to set WORKSPACE_NAME in .env}"
+: "${VERIFY_ASSIGNEE_ID:?Need to set VERIFY_ASSIGNEE_ID in .env}"
+
+az role assignment list \
+  --assignee "$VERIFY_ASSIGNEE_ID" \
+  --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE_NAME" \
+  -o table

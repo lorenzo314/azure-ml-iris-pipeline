@@ -1,0 +1,19 @@
+# Azure ML & identity
+azure-ai-ml==1.32.0
+azure-identity==1.25.3
+
+# MLflow (Azure ML flavour)
+mlflow==3.9.0
+azureml-mlflow==1.62.0.post2
+
+# ML & data
+scikit-learn==1.8.0
+numpy==2.4.4
+pandas==2.3.3
+
+# Config & utilities
+PyYAML==6.0.3
+python-dotenv==1.2.2
+
+# Model serialisation (used by score.py)
+joblib==1.5.3
