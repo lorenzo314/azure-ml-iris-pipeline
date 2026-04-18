@@ -2,6 +2,7 @@ import argparse
 import os
 
 import mlflow
+
 # import azureml.mlflow
 import mlflow.sklearn
 
@@ -20,10 +21,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 # Model + search
 model = RandomForestClassifier()
-param_dist = {
-    "n_estimators": [10, 50, 100],
-    "max_depth": [3, 5, 10]
-}
+param_dist = {"n_estimators": [10, 50, 100], "max_depth": [3, 5, 10]}
 search = RandomizedSearchCV(model, param_dist, n_iter=3)
 
 # Train
@@ -45,4 +43,3 @@ mlflow.sklearn.log_model(best_model, "model")
 # Save accuracy to file for pipeline
 with open(os.path.join(args.output_dir, "metrics.txt"), "w") as f:
     f.write(str(acc))
-

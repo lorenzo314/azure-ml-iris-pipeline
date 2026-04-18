@@ -4,6 +4,7 @@ import os
 import glob
 import traceback
 
+
 def init():
     global model
     try:
@@ -43,4 +44,3 @@ def run(raw_data):
         print("RUN ERROR:")
         traceback.print_exc()
         return str(e)
-

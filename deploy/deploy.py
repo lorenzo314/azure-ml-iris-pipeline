@@ -90,4 +90,3 @@ if __name__ == "__main__":
         workspace_name=args.workspace_name,
         endpoint_name=args.endpoint_name,
     )
-

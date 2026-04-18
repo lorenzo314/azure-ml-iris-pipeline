@@ -69,6 +69,7 @@ register_component = command(
 
 # --- Pipeline definition -------------------------------------------------
 
+
 @dsl.pipeline(
     compute=compute,
     description="Iris training pipeline: train x3 → select best → register",
@@ -96,4 +97,3 @@ pipeline_job = ml_client.jobs.create_or_update(
     experiment_name=aml_cfg["experiment_name"],
 )
 print(f"Pipeline submitted: {pipeline_job.name}")
-

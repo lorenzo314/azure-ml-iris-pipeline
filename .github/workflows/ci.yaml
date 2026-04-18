@@ -35,7 +35,7 @@ jobs:
           pip install flake8 black pytest
 
       - name: Check formatting with black
-        run: black --check .
+        run: black --check --target-version py311 .
 
       - name: Lint with flake8
         run: flake8 src/ setup/ deploy/ pipeline.py --max-line-length 99
