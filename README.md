@@ -129,7 +129,7 @@ python deploy/test_endpoint.py
 azure-ml-iris-pipeline/
 │
 ├── .github/workflows/
-│   └── ci.yml                  # Lint and test on every push
+│   └── ci.yaml                 # Lint and test on every push
 │
 ├── configs/
 │   └── config.yaml             # All non-sensitive configuration
@@ -157,12 +157,16 @@ azure-ml-iris-pipeline/
 │       └── config.py           # Shared config and credential loader
 │
 ├── tests/
-│   └── test_auth.py            # Verify workspace connectivity
+│   ├── test_auth.py            # Verify workspace connectivity (local only)
+│   └── test_config.py          # Unit tests for config loader (CI)
 │
 ├── pipeline.py                 # Main pipeline definition and submission
 ├── .env.example                # Environment variable template
-├── requirements.txt            # Direct dependencies only
-└── conda.yaml                  # Azure ML environment definition
+├── requirements.txt            # Runtime dependencies
+├── requirements-dev.txt        # Development and CI dependencies
+├── pyproject.toml              # Package definition and tool config
+├── conda.yaml                  # Azure ML training environment definition
+└── conda_inference.yaml        # Azure ML inference environment definition
 ```
 
 ---
@@ -201,7 +205,7 @@ are always read from environment variables and never stored in the codebase.
 | Model training | scikit-learn 1.8 — Random Forest |
 | Experiment tracking | MLflow 3.9 |
 | Endpoint | Azure ML Managed Online Endpoint |
-| Language | Python 3.10 |
+| Language | Python 3.11 |
 
 ---
 
