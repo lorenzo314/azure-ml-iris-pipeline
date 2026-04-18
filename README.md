@@ -1,6 +1,6 @@
 # azure-ml-iris-pipeline
 
-![Python](https://img.shields.io/badge/python-3.10-blue)
+![Python](https://img.shields.io/badge/python-3.11-blue)
 ![Azure ML](https://img.shields.io/badge/azure--ai--ml-1.32.0-0078D4?logo=microsoftazure)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![CI](https://github.com/lorenzo314/azure-ml-iris-pipeline/actions/workflows/ci.yaml/badge.svg)

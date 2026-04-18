@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "azure-ml-iris-pipeline"
 version = "0.1.0"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 description = "End-to-end Azure ML pipeline: train, select, register and deploy a Random Forest model"
 license = { text = "MIT" }
 
@@ -19,4 +19,3 @@ line-length = 99
 [tool.flake8]
 max-line-length = 99
 exclude = [".venv", "venv", "__pycache__"]
-
