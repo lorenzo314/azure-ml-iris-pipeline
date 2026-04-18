@@ -5,7 +5,6 @@ Workspace credentials are injected as environment variables by the pipeline.
 """
 
 import argparse
-import os
 
 from azure.identity import DefaultAzureCredential
 from azure.ai.ml import MLClient
