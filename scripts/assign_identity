@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-# Assigns the Contributor role to the compute cluster's managed identity.
+# Assigns the required roles to the compute cluster's managed identity:
+#   - Contributor: general resource management
+#   - AzureML Data Scientist: required for model registration and versioning
 # Requires SUBSCRIPTION_ID, RESOURCE_GROUP, WORKSPACE_NAME, COMPUTE_PRINCIPAL_ID
-# to be set in your environment (source .env first).
+# to be set in your environment (.env is loaded automatically).
 
 set -euo pipefail
 
@@ -17,8 +19,20 @@ fi
 : "${WORKSPACE_NAME:?Need to set WORKSPACE_NAME in .env}"
 : "${COMPUTE_PRINCIPAL_ID:?Need to set COMPUTE_PRINCIPAL_ID in .env}"
 
+SCOPE="/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE_NAME"
+
+echo "Assigning Contributor role..."
 az role assignment create \
   --assignee-object-id "$COMPUTE_PRINCIPAL_ID" \
   --assignee-principal-type ServicePrincipal \
   --role Contributor \
-  --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE_NAME"
+  --scope "$SCOPE"
+
+echo "Assigning AzureML Data Scientist role..."
+az role assignment create \
+  --assignee-object-id "$COMPUTE_PRINCIPAL_ID" \
+  --assignee-principal-type ServicePrincipal \
+  --role "AzureML Data Scientist" \
+  --scope "$SCOPE"
+
+echo "Done. Note: role propagation can take a few minutes before taking effect."
