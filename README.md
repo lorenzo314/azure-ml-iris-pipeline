@@ -68,7 +68,7 @@ SUBSCRIPTION_ID=your-subscription-id
 RESOURCE_GROUP=your-resource-group
 WORKSPACE_NAME=your-workspace-name
 COMPUTE_PRINCIPAL_ID=your-compute-principal-id
-VERIFY_ASSIGNEE_ID=your-verify-assignee-id
+VERIFY_ASSIGNEE_ID=$COMPUTE_PRINCIPAL_ID   # same value as COMPUTE_PRINCIPAL_ID
 ```
 
 > **Note:** shell scripts load `.env` automatically — no need to source it manually
